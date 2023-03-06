@@ -1,0 +1,243 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+  http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>OperationsTool</groupId>
+    <artifactId>OperationsTool</artifactId>
+    <packaging>jar</packaging>
+    <version>1</version>
+
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>tomcat-jdbc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.19</version>
+		</dependency>
+
+		
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+		
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.toedter</groupId>
+		    <artifactId>jcalendar</artifactId>
+		    <version>1.2.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.6</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-text</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20140107</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.12.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>au.com.bytecode</groupId>
+		    <artifactId>opencsv</artifactId>
+		    <version>2.4</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl -->
+		<dependency>
+		    <groupId>net.sourceforge.jexcelapi</groupId>
+		    <artifactId>jxl</artifactId>
+		    <version>2.6.12</version>
+		</dependency>
+				
+		
+		<dependency>
+			<groupId>com.jaunt</groupId>
+			<artifactId>jaunt</artifactId>
+			<version>1.6.1</version>
+			<!-- <scope>system</scope>
+			<systemPath>
+    			${project.basedir}/lib/jaunt1.6.1.jar
+  			</systemPath> -->
+		</dependency>
+		
+		<dependency>
+			<groupId>com.jauntium</groupId>
+			<artifactId>jauntium</artifactId>
+			<version>0.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+		    <groupId>xml-apis</groupId>
+		    <artifactId>xml-apis</artifactId>
+		    <version>2.0.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-analyzers-common</artifactId>
+		    <version>4.3.0</version>
+		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-queryparser</artifactId>
+		    <version>4.3.0</version>
+		</dependency>
+		
+		<!-- Dependency for Stripe.com Payment Gateway Jar -->
+		<dependency>
+		  <groupId>com.stripe</groupId>
+		  <artifactId>stripe-java</artifactId>
+		  <version>19.27.0</version>
+		</dependency>
+		
+    </dependencies>
+
+    <build>
+	    <plugins>
+            
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            
+            <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-dependency-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <id>copy-dependencies</id>
+			            <phase>prepare-package</phase>
+			            <goals>
+			                <goal>copy-dependencies</goal>
+			            </goals>
+			            <configuration>
+			                <outputDirectory>
+			                    ${project.basedir}/lib
+			                </outputDirectory>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+            
+			<!-- <plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-install-plugin</artifactId>
+			   <version>2.5.1</version>
+			   <configuration>
+			      <groupId>com.jaunt</groupId>
+			      <artifactId>jaunt</artifactId>
+			      <version>1.5.1</version>
+			      <packaging>jar</packaging>
+			      <file>${project.basedir}/lib/jaunt-1.5.1.jar</file>
+			      <generatePom>true</generatePom>
+			   </configuration>
+			   <executions>
+			      <execution>
+			         <id>install-jar-lib</id>
+			         <goals>
+			            <goal>install-file</goal>
+			         </goals>
+			         <phase>validate</phase>
+			      </execution>
+			   </executions>
+			</plugin>
+			
+			<plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-install-plugin</artifactId>
+			   <version>2.5.1</version>
+			   <configuration>
+			      <groupId>com.jauntium</groupId>
+			      <artifactId>jauntium</artifactId>
+			      <version>0.9</version>
+			      <packaging>jar</packaging>
+			      <file>${project.basedir}/lib/jauntium0.9.jar</file>
+			      <generatePom>true</generatePom>
+			   </configuration>
+			   <executions>
+			      <execution>
+			         <id>install-jar-lib</id>
+			         <goals>
+			            <goal>install-file</goal>
+			         </goals>
+			         <phase>validate</phase>
+			      </execution>
+			   </executions>
+			</plugin> -->            
+        
+        </plugins>
+    </build>
+
+</project>
